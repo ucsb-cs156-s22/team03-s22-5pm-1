@@ -194,14 +194,14 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
             .orgCode("ERSP")
             .orgTranslationShort("Early-Research-Scholars-Program")
             .orgTranslation("Early-Research-Scholars-Program")
-            .inactive(false)
+            .inactive(true)
             .build();
         
         when(ucsbOrganizationRepository.save(eq(ersp))).thenReturn(ersp);
 
         //act
         MvcResult response = mockMvc.perform(
-            post("/api/ucsborganization/post?orgCode=ERSP&orgTranslationShort=Early-Research-Scholars-Program&orgTranslation=Early-Research-Scholars-Program&inactive=false")
+            post("/api/ucsborganization/post?orgCode=ERSP&orgTranslationShort=Early-Research-Scholars-Program&orgTranslation=Early-Research-Scholars-Program&inactive=true")
             .with(csrf())).andExpect(status().isOk()).andReturn();
         
         //assert
@@ -267,9 +267,9 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
             .build();
 
         UCSBOrganization zprEdited = UCSBOrganization.builder()
-            .orgCode("zpr")
-            .orgTranslation("ZETA PHI RHO")
-            .orgTranslationShort("ZETA PHI RHO")
+            .orgCode("zap")
+            .orgTranslation("ZETA ALPHA RHO")
+            .orgTranslationShort("ZETA ALPHA RHO")
             .inactive(true)
             .build();
 
