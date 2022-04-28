@@ -7,8 +7,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,7 +62,7 @@ public class ArticleController extends ApiController {
         @ApiParam("explanation") @RequestParam String explanation,
         @ApiParam("email") @RequestParam String email,
         @ApiParam("dateAdded") @RequestParam LocalDateTime dateAdded
-        )
+        ) throws JsonProcessingException
         {
 
         Article article = new Article();
