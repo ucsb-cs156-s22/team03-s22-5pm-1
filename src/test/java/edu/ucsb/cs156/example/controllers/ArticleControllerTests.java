@@ -273,9 +273,9 @@ public class ArticleControllerTests extends ControllerTestCase {
             Article articleEdited = Article.builder()
                             .title("Using testing-playground with React Testing Library")
                             .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
-                            .explanation("Helpful when we get to front end development")
+                            .explanation("A lot of really useful classes are built into Spring")
                             .email("phtcon@ucsb.edu")
-                            .dateAdded(ldt2)
+                            .dateAdded(ldt1)
                             .build();
  
 
@@ -333,4 +333,186 @@ public class ArticleControllerTests extends ControllerTestCase {
             assertEquals("Article with id 67 not found", json.get("message"));
 
     }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void data_update() throws Exception {
+            // arrange
+
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
+            LocalDateTime ldt2 = LocalDateTime.parse("2022-04-19T00:00:00");
+
+            Article articleOrig = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+
+            Article articleEdited = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt2)
+                            .build();
+ 
+
+            String requestBody = mapper.writeValueAsString(articleEdited);
+
+            when(articleRepository.findById(eq(67L))).thenReturn(Optional.of(articleOrig));
+
+            // act
+            MvcResult response = mockMvc.perform(
+                            put("/api/articles?id=67")
+                                            .contentType(MediaType.APPLICATION_JSON)
+                                            .characterEncoding("utf-8")
+                                            .content(requestBody)
+                                            .with(csrf()))
+                            .andExpect(status().isOk()).andReturn();
+
+            // assert
+            verify(articleRepository, times(1)).findById(67L);
+            verify(articleRepository, times(1)).save(articleEdited); // should be saved with correct user
+            String responseString = response.getResponse().getContentAsString();
+            assertEquals(requestBody, responseString);
+    }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void email_update() throws Exception {
+            // arrange
+
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
+        //     LocalDateTime ldt2 = LocalDateTime.parse("2022-04-19T00:00:00");
+
+            Article articleOrig = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+
+            Article articleEdited = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("xianqi@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+ 
+
+            String requestBody = mapper.writeValueAsString(articleEdited);
+
+            when(articleRepository.findById(eq(67L))).thenReturn(Optional.of(articleOrig));
+
+            // act
+            MvcResult response = mockMvc.perform(
+                            put("/api/articles?id=67")
+                                            .contentType(MediaType.APPLICATION_JSON)
+                                            .characterEncoding("utf-8")
+                                            .content(requestBody)
+                                            .with(csrf()))
+                            .andExpect(status().isOk()).andReturn();
+
+            // assert
+            verify(articleRepository, times(1)).findById(67L);
+            verify(articleRepository, times(1)).save(articleEdited); // should be saved with correct user
+            String responseString = response.getResponse().getContentAsString();
+            assertEquals(requestBody, responseString);
+    }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void url_update() throws Exception {
+            // arrange
+
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
+        //     LocalDateTime ldt2 = LocalDateTime.parse("2022-04-19T00:00:00");
+
+            Article articleOrig = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+
+            Article articleEdited = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://twitter.com/maciejwalkowiak/status/1511736828369719300?t=gGXpmBH4y4eY9OBSUInZEg&s=09")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+ 
+
+            String requestBody = mapper.writeValueAsString(articleEdited);
+
+            when(articleRepository.findById(eq(67L))).thenReturn(Optional.of(articleOrig));
+
+            // act
+            MvcResult response = mockMvc.perform(
+                            put("/api/articles?id=67")
+                                            .contentType(MediaType.APPLICATION_JSON)
+                                            .characterEncoding("utf-8")
+                                            .content(requestBody)
+                                            .with(csrf()))
+                            .andExpect(status().isOk()).andReturn();
+
+            // assert
+            verify(articleRepository, times(1)).findById(67L);
+            verify(articleRepository, times(1)).save(articleEdited); // should be saved with correct user
+            String responseString = response.getResponse().getContentAsString();
+            assertEquals(requestBody, responseString);
+    }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void title_update() throws Exception {
+            // arrange
+
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-04-20T00:00:00");
+        //     LocalDateTime ldt2 = LocalDateTime.parse("2022-04-19T00:00:00");
+
+            Article articleOrig = Article.builder()
+                            .title("Using testing-playground with React Testing Library")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+
+            Article articleEdited = Article.builder()
+                            .title("Handy Spring Utility Classes")
+                            .url("https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7")
+                            .explanation("Helpful when we get to front end development")
+                            .email("phtcon@ucsb.edu")
+                            .dateAdded(ldt1)
+                            .build();
+ 
+
+            String requestBody = mapper.writeValueAsString(articleEdited);
+
+            when(articleRepository.findById(eq(67L))).thenReturn(Optional.of(articleOrig));
+
+            // act
+            MvcResult response = mockMvc.perform(
+                            put("/api/articles?id=67")
+                                            .contentType(MediaType.APPLICATION_JSON)
+                                            .characterEncoding("utf-8")
+                                            .content(requestBody)
+                                            .with(csrf()))
+                            .andExpect(status().isOk()).andReturn();
+
+            // assert
+            verify(articleRepository, times(1)).findById(67L);
+            verify(articleRepository, times(1)).save(articleEdited); // should be saved with correct user
+            String responseString = response.getResponse().getContentAsString();
+            assertEquals(requestBody, responseString);
+    }
+    
 }
+
