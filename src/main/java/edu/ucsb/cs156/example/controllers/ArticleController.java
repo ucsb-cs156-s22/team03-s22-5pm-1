@@ -7,7 +7,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,13 +22,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import java.time.LocalDateTime;
 
-import javax.validation.Valid;
 
 
 @Api(description = "Article")
-@RequestMapping("/api/articles")
+@RequestMapping("/api/Article")
 @RestController
 @Slf4j
 public class ArticleController extends ApiController {
@@ -34,10 +37,10 @@ public class ArticleController extends ApiController {
     @Autowired
     ArticleRepository articleRepository;
 
-    @ApiOperation(value = "List all articles")
+    @ApiOperation(value = "List all Article")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<Article> allArticles() {
+    public Iterable<Article> allArticle() {
         Iterable<Article> article = articleRepository.findAll();
         return article;
     }

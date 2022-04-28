@@ -47,20 +47,20 @@ public class ArticleControllerTests extends ControllerTestCase {
 
     @Test
     public void logged_out_users_cannot_get_all() throws Exception {
-            mockMvc.perform(get("/api/articles/all"))
+            mockMvc.perform(get("/api/Article/all"))
                             .andExpect(status().is(403)); // logged out users can't get all
     }
 
     @WithMockUser(roles = { "USER" })
     @Test
     public void logged_in_users_can_get_all() throws Exception {
-            mockMvc.perform(get("/api/articles/all"))
+            mockMvc.perform(get("/api/Article/all"))
                             .andExpect(status().is(200)); // logged
     }
 
     @Test
     public void logged_out_users_cannot_get_by_id() throws Exception {
-            mockMvc.perform(get("/api/articles?id=1"))
+            mockMvc.perform(get("/api/Article?id=1"))
                             .andExpect(status().is(403)); // logged out users can't get by id
     }
 
@@ -69,14 +69,14 @@ public class ArticleControllerTests extends ControllerTestCase {
 
     @Test
     public void logged_out_users_cannot_post() throws Exception {
-            mockMvc.perform(post("/api/articles/post"))
+            mockMvc.perform(post("/api/Article/post"))
                             .andExpect(status().is(403));
     }
 
     @WithMockUser(roles = { "USER" })
     @Test
     public void logged_in_regular_users_cannot_post() throws Exception {
-            mockMvc.perform(post("/api/articles/post"))
+            mockMvc.perform(post("/api/Article/post"))
                             .andExpect(status().is(403)); // only admins can post
     }
 
@@ -100,7 +100,7 @@ public class ArticleControllerTests extends ControllerTestCase {
             when(articleRepository.findById(eq(1L))).thenReturn(Optional.of(article));
 
             // act
-            MvcResult response = mockMvc.perform(get("/api/articles?id=1"))
+            MvcResult response = mockMvc.perform(get("/api/Article?id=1"))
                             .andExpect(status().isOk()).andReturn();
 
             // assert
@@ -120,7 +120,7 @@ public class ArticleControllerTests extends ControllerTestCase {
             when(articleRepository.findById(eq(1L))).thenReturn(Optional.empty());
 
             // act
-            MvcResult response = mockMvc.perform(get("/api/articles?id=1"))
+            MvcResult response = mockMvc.perform(get("/api/Article?id=1"))
                             .andExpect(status().isNotFound()).andReturn();
 
             // assert
@@ -162,7 +162,7 @@ public class ArticleControllerTests extends ControllerTestCase {
             when(articleRepository.findAll()).thenReturn(expectedDates);
 
             // act
-            MvcResult response = mockMvc.perform(get("/api/articles/all"))
+            MvcResult response = mockMvc.perform(get("/api/Article/all"))
                             .andExpect(status().isOk()).andReturn();
 
             // assert
@@ -192,7 +192,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("/api/articles/post?title=Using testing-playground with React Testing Library&url=https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7&explanation=Helpful when we get to front end development&email=phtcon@ucsb.edu&dateAdded=2022-04-20T00:00:00")
+                            post("/api/Article/post?title=Using testing-playground with React Testing Library&url=https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7&explanation=Helpful when we get to front end development&email=phtcon@ucsb.edu&dateAdded=2022-04-20T00:00:00")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
@@ -222,7 +222,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            delete("/api/articles?id=15")
+                            delete("/api/Article?id=15")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
@@ -244,7 +244,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            delete("/api/articles?id=15")
+                            delete("/api/Article?id=15")
                                             .with(csrf()))
                             .andExpect(status().isNotFound()).andReturn();
 
@@ -285,7 +285,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/articles?id=67")
+                            put("/api/Article?id=67")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -320,7 +320,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/articles?id=67")
+                            put("/api/Article?id=67")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -365,7 +365,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/articles?id=67")
+                            put("/api/Article?id=67")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -410,7 +410,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/articles?id=67")
+                            put("/api/Article?id=67")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -455,7 +455,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/articles?id=67")
+                            put("/api/Article?id=67")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -500,7 +500,7 @@ public class ArticleControllerTests extends ControllerTestCase {
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/articles?id=67")
+                            put("/api/Article?id=67")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
