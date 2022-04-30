@@ -48,11 +48,8 @@ public class RecommendationController extends ApiController {
     public Recommendation getById(
             @ApiParam("id") @RequestParam Long id) {
 
-
         Recommendation recommendation = recommendationRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(Recommendation.class, id));
-
-
 
         return recommendation;
     }
@@ -66,8 +63,7 @@ public class RecommendationController extends ApiController {
             @ApiParam("explanation") @RequestParam String explanation,
             @ApiParam("dateRequested") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateRequested,
             @ApiParam("dateNeeded") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateNeeded,
-            @ApiParam("done") @RequestParam boolean done
-            )
+            @ApiParam("done") @RequestParam boolean done)
             throws JsonProcessingException {
 
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
