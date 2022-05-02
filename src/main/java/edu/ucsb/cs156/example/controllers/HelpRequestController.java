@@ -35,77 +35,87 @@ public class HelpRequestController extends ApiController {
     @Autowired
     HelpRequestRepository helpRequestRepository;
 
-    @ApiOperation(value = "List all requests")
+    @ApiOperation(value = "List all help requests")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<HelpRequest> allHelpRequests() {
-        Iterable<HelpRequest> requests = HelpRequestRepository.findAll();
+        Iterable<HelpRequest> requests = helpRequestRepository.findAll();
         return requests;
     }
 
-    @ApiOperation(value = "Get a single date")
+    @ApiOperation(value = "Get a single help request")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
-    public UCSBDate getById(
+    public HelpRequest getById(
             @ApiParam("id") @RequestParam Long id) {
-        UCSBDate ucsbDate = ucsbDateRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBDate.class, id));
+        HelpRequest helpRequest = helpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        return ucsbDate;
+        return helpRequest;
     }
 
     @ApiOperation(value = "Create a new request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public HelpRequest postHelpRequest(
-            @ApiParam("quarterYYYYQ") @RequestParam String quarterYYYYQ,
-            @ApiParam("name") @RequestParam String name,
-            @ApiParam("date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("localDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime)
+
+            @ApiParam("requesterEmail") @RequestParam String requesterEmail,
+            @ApiParam("teamId") @RequestParam String teamId,
+            @ApiParam("tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
+            @ApiParam("explanation") @RequestParam String explanation,
+            @ApiParam("solved") @RequestParam boolean solved,
+            @ApiParam("date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime)
             throws JsonProcessingException {
 
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-        log.info("localDateTime={}", localDateTime);
+        log.info("requestTime={}", requestTime);
 
-        UCSBDate ucsbDate = new UCSBDate();
-        ucsbDate.setQuarterYYYYQ(quarterYYYYQ);
-        ucsbDate.setName(name);
-        ucsbDate.setLocalDateTime(localDateTime);
+        HelpRequest helpRequest = new HelpRequest();
+        helpRequest.setRequesterEmail(requesterEmail);
+        helprequest.setTeamId(teamId);
+        helprequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
+        helprequest.setExplanation(explanation);
+        helprequest.setSolved(solved);
+        helprequest.setRequestTime(requestTime);
 
-        UCSBDate savedUcsbDate = ucsbDateRepository.save(ucsbDate);
+        HelpRequest savedHelpRequest = helpRequestRepository.save(helpRequest);
 
-        return savedUcsbDate;
+        return savedHelpRequest;
     }
 
-    @ApiOperation(value = "Delete a UCSBDate")
+    @ApiOperation(value = "Delete a HelpRequest")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
-    public Object deleteUCSBDate(
+    public Object deleteHelpRequest(
             @ApiParam("id") @RequestParam Long id) {
-        UCSBDate ucsbDate = ucsbDateRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBDate.class, id));
+        HelpRequest helpRequest = helpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        ucsbDateRepository.delete(ucsbDate);
-        return genericMessage("UCSBDate with id %s deleted".formatted(id));
+        helpRequestRepository.delete(helpRequest);
+        return genericMessage("HelpRequest with id %s deleted".formatted(id));
     }
 
-    @ApiOperation(value = "Update a single date")
+    @ApiOperation(value = "Update a single request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
-    public UCSBDate updateUCSBDate(
+    public HelpRequest updateHelpRequest(
             @ApiParam("id") @RequestParam Long id,
-            @RequestBody @Valid UCSBDate incoming) {
+            @RequestBody @Valid HelpRequest incoming) {
 
-        UCSBDate ucsbDate = ucsbDateRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(UCSBDate.class, id));
+        HelpRequest helpRequest = helpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        ucsbDate.setQuarterYYYYQ(incoming.getQuarterYYYYQ());
-        ucsbDate.setName(incoming.getName());
-        ucsbDate.setLocalDateTime(incoming.getLocalDateTime());
+        helpRequest.setRequesterEmail(incoming.requesterEmail);
+        helprequest.setTeamId(incoming.teamId);
+        helprequest.setTableOrBreakoutRoom(incoming.tableOrBreakoutRoom);
+        helprequest.setExplanation(incoming.explanation);
+        helprequest.setSolved(incoming.solved);
+        helprequest.setRequestTime(incoming.requestTime);
 
-        ucsbDateRepository.save(ucsbDate);
+        helpRequestRepository.save(helpRequest);
 
-        return ucsbDate;
+        return helpRequest;
     }
 }
