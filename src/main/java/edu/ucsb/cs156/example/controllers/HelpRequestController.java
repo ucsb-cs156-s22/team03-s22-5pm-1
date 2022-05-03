@@ -27,7 +27,7 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Api(description = "HelpRequest")
-@RequestMapping("/api/helprequest")
+@RequestMapping("/api/HelpRequest")
 @RestController
 @Slf4j
 public class HelpRequestController extends ApiController {
@@ -74,11 +74,11 @@ public class HelpRequestController extends ApiController {
 
         HelpRequest helpRequest = new HelpRequest();
         helpRequest.setRequesterEmail(requesterEmail);
-        helprequest.setTeamId(teamId);
-        helprequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
-        helprequest.setExplanation(explanation);
-        helprequest.setSolved(solved);
-        helprequest.setRequestTime(requestTime);
+        helpRequest.setTeamId(teamId);
+        helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
+        helpRequest.setExplanation(explanation);
+        helpRequest.setSolved(solved);
+        helpRequest.setRequestTime(requestTime);
 
         HelpRequest savedHelpRequest = helpRequestRepository.save(helpRequest);
 
@@ -107,12 +107,12 @@ public class HelpRequestController extends ApiController {
         HelpRequest helpRequest = helpRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-        helpRequest.setRequesterEmail(incoming.requesterEmail);
-        helprequest.setTeamId(incoming.teamId);
-        helprequest.setTableOrBreakoutRoom(incoming.tableOrBreakoutRoom);
-        helprequest.setExplanation(incoming.explanation);
-        helprequest.setSolved(incoming.solved);
-        helprequest.setRequestTime(incoming.requestTime);
+        helpRequest.setRequesterEmail(incoming.getRequesterEmail());
+        helpRequest.setTeamId(incoming.getTeamId());
+        helpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
+        helpRequest.setExplanation(incoming.getExplanation());
+        helpRequest.setSolved(incoming.getSolved());
+        helpRequest.setRequestTime(incoming.getRequestTime());
 
         helpRequestRepository.save(helpRequest);
 
