@@ -4,6 +4,8 @@ TODO: Add a codecov badge for the main branch here.  What's shown is an example,
 
 [![codecov](https://codecov.io/gh/ucsb-cs156-s22/team03-s22-5pm-1/branch/main/graph/badge.svg?token=v1vtYBbOIr)](https://codecov.io/gh/ucsb-cs156-s22/team03-s22-5pm-1)
 
+The link to Codecov: [![codecov](https://codecov.io/gh/ucsb-cs156-s22/team02-s22-5pm-1/branch/main/graph/badge.svg?token=0YgmWetQoc)](https://codecov.io/gh/ucsb-cs156-s22/team02-s22-5pm-1)
+
 TODO: Add a link to the deployed Heroku app for your team here, e.g.
 
 * <https://s22-7pm-3-team02.herokuapp.com>
