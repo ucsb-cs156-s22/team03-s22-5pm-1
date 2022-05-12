@@ -8,10 +8,8 @@ TODO: Add a link to the deployed Heroku app for your team here, e.g.
 
 * <https://s22-7pm-3-team02.herokuapp.com>
 
-TODO: Add correct links to the -docs and -docs qa GitHub pages sites
-
-* Storybook (production): <https://ucsb-cs156-s22.github.io/STARTER-team03-docs>
-* Storybook (development/qa): <https://ucsb-cs156-s22.github.io/STARTER-team03-docs-qa>
+* Storybook (production): <https://ucsb-cs156-s22.github.io/team03-s22-5pm-1-docs/>
+* Storybook (development/qa): <https://ucsb-cs156-s22.github.io/team03-s22-5pm-1-docs-qa/>
 
 TODO: Leave the results of the TODOS, but remove all of the TODO instructions from the readme.
 
