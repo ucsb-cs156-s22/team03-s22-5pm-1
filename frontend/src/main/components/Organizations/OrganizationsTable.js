@@ -48,7 +48,6 @@ export default function OrganizationsTable({ organizations, currentUser }) {
         },
         {
             Header: 'Inactive?',
-            accessor: 'inactive',
             accessor: (row, _rowIndex) => String(row.inactive),
         }
     ];
