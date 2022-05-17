@@ -8,7 +8,7 @@ import TodosCreatePage from "main/pages/Todos/TodosCreatePage";
 import TodosEditPage from "main/pages/Todos/TodosEditPage";
 
 import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexPage";
-import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestgIndexPage"
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage"
 
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
