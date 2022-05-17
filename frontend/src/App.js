@@ -10,6 +10,8 @@ import TodosEditPage from "main/pages/Todos/TodosEditPage";
 import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexPage";
 import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage"
 
+import OrganizationsIndexPage from "main/pages/Organizations/OrganizationsIndexPage";
+
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
@@ -61,6 +63,13 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/organizations/list" element={<OrganizationsIndexPage />} />
             </>
           )
         }
