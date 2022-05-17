@@ -8,7 +8,7 @@ import TodosCreatePage from "main/pages/Todos/TodosCreatePage";
 import TodosEditPage from "main/pages/Todos/TodosEditPage";
 
 import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexPage";
-
+import ReviewsIndexPage from "main/pages/Reviews/ReviewsIndexPage";
 import OrganizationsIndexPage from "main/pages/Organizations/OrganizationsIndexPage";
 
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
@@ -60,6 +60,13 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/organizations/list" element={<OrganizationsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/reviews/list" element={<ReviewsIndexPage />} />
             </>
           )
         }
