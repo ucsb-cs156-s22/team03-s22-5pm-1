@@ -64,17 +64,19 @@ export default function HelpRequestTable({ helpRequest, currentUser }) {
 
     ];
 
-    const columnsIfAdmin = [
-        ...columns,
-        ButtonColumn("Edit", "primary", editCallback, "UCSBDatesTable"),
-        ButtonColumn("Delete", "danger", deleteCallback, "UCSBDatesTable")
-    ];
+    // const columnsIfAdmin = [
+    //     ...columns,
+    //     ButtonColumn("Edit", "primary", editCallback, "UCSBDatesTable"),
+    //     ButtonColumn("Delete", "danger", deleteCallback, "UCSBDatesTable")
+    // ];
 
-    const columnsToDisplay = hasRole(currentUser, "ROLE_ADMIN") ? columnsIfAdmin : columns;
+    // const columnsToDisplay = hasRole(currentUser, "ROLE_ADMIN") ? columnsIfAdmin : columns;
+
+    const columnsToDisplay = columns;
 
     return <OurTable
-        data={dates}
+        data={helpRequest}
         columns={columnsToDisplay}
-        testid={"UCSBDatesTable"}
+        testid={"HelpRequestTable"}
     />;
 };
