@@ -1,37 +1,39 @@
-import OurTable from "main/components/OurTable";
-// import { useBackendMutation } from "main/utils/useBackend";
-// import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/UCSBDateUtils"
-// import { useNavigate } from "react-router-dom";
-// import { hasRole } from "main/utils/currentUser";
+import OurTable, { ButtonColumn } from "main/components/OurTable";
+import { useBackendMutation } from "main/utils/useBackend";
+import { onDeleteSuccess } from "main/utils/UCSBDateUtils"
+import { useNavigate } from "react-router-dom";
+import { hasRole } from "main/utils/currentUser";
 
-export default function HelpRequestTable({ helpRequest, _currentUser }) {
 
-    // const navigate = useNavigate();
+export function cellToAxiosParamsDelete(cell) {
+    return {
+        url: "/api/HelpRequest",
+        method: "DELETE",
+        params: {
+            id: cell.row.values.id
+        }
+    }
+}
 
-    // const editCallback = (cell) => {
-    //     navigate(`/ucsbdates/edit/${cell.row.values.id}`)
-    // }
+export default function HelpRequestTable({ helpRequest, currentUser }) {
+
+    const navigate = useNavigate();
+
+    const editCallback = (cell) => {
+        navigate(`/HelpRequest/edit/${cell.row.values.id}`)
+    }
 
     // Stryker disable all : hard to test for query caching
-    // const deleteMutation = useBackendMutation(
-    //     cellToAxiosParamsDelete,
-    //     { onSuccess: onDeleteSuccess },
-    //     ["/api/ucsbdates/all"]
-    // );
+    const deleteMutation = useBackendMutation(
+        cellToAxiosParamsDelete,
+        { onSuccess: onDeleteSuccess },
+        ["/api/HelpRequest/all"]
+    );
     // Stryker enable all 
 
     // Stryker disable next-line all : TODO try to make a good test for this
-    // const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
+    const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 
-    // {
-    //     "id": 1,
-    //     "requesterEmail": "jonahpark@ucsb.edu",
-    //     "teamId": "1",
-    //     "tableOrBreakoutRoom": "table",
-    //     "requestTime": "2022-05-17T02:00:00",
-    //     "explanation": "help",
-    //     "solved": false
-    //   }
     const columns = [
         {
             Header: 'id',
@@ -65,15 +67,13 @@ export default function HelpRequestTable({ helpRequest, _currentUser }) {
 
     ];
 
-    // const columnsIfAdmin = [
-    //     ...columns,
-    //     ButtonColumn("Edit", "primary", editCallback, "UCSBDatesTable"),
-    //     ButtonColumn("Delete", "danger", deleteCallback, "UCSBDatesTable")
-    // ];
+    const columnsIfAdmin = [
+        ...columns,
+        ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable"),
+        ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable")
+    ];
 
-    // const columnsToDisplay = hasRole(currentUser, "ROLE_ADMIN") ? columnsIfAdmin : columns;
-
-    const columnsToDisplay = columns;
+    const columnsToDisplay = hasRole(currentUser, "ROLE_ADMIN") ? columnsIfAdmin : columns;
 
     return <OurTable
         data={helpRequest}
