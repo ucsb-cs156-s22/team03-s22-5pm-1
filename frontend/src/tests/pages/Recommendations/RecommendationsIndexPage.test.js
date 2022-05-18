@@ -144,7 +144,7 @@ describe("RecommendationsIndexPage tests", () => {
 
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/recommendations/all").reply(200, recommendationsFixtures.threeRecommendations);
-        axiosMock.onDelete("/api/recommendations").reply(200, "Recommendation with id 1 was deleted");
+        axiosMock.onDelete("/api/recommendations", { params: { id: 1 } }).reply(200, "Recommendation with id 1 was deleted");
 
 
         const { getByTestId } = render(

@@ -22,7 +22,7 @@ export default function RecommendationsTable({ recommendations, currentUser }) {
     //     navigate(`/ucsbdates/edit/${cell.row.values.id}`)
     // }
 
-    // // Stryker disable all : hard to test for query caching
+    // Stryker disable all : hard to test for query caching
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
@@ -60,8 +60,8 @@ export default function RecommendationsTable({ recommendations, currentUser }) {
         },
         {
             Header: 'Done?',
-            accessor: 'done',
-            accessor: (row, _rowIndex) => String(row.done)
+            id: 'done',
+            accessor: (row, _rowIndex) => String(row.done),
         }
     ];
 

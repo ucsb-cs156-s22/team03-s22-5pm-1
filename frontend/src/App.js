@@ -9,8 +9,6 @@ import TodosEditPage from "main/pages/Todos/TodosEditPage";
 
 import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexPage";
 
-import OrganizationsIndexPage from "main/pages/Organizations/OrganizationsIndexPage";
-
 import RecommendationsIndexPage from "main/pages/Recommendations/RecommendationsIndexPage";
 
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
@@ -55,13 +53,6 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/ucsbdates/list" element={<UCSBDatesIndexPage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/organizations/list" element={<OrganizationsIndexPage />} />
             </>
           )
         }
