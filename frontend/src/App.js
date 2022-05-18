@@ -11,6 +11,8 @@ import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexP
 
 import OrganizationsIndexPage from "main/pages/Organizations/OrganizationsIndexPage";
 
+import MenuItemIndexPage from "main/pages/MenuItem/MenuItemIndexPage";
+
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
@@ -46,6 +48,13 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/diningCommons/list" element={<DiningCommonsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/menuitem/list" element={<MenuItemIndexPage />} />
             </>
           )
         }
