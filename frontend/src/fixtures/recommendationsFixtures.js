@@ -10,7 +10,7 @@ const recommendationsFixtures = {
     },
     threeRecommendations: [
         {
-            "id": 2,
+            "id": 1,
             "requesterEmail": "ldelplaya@ucsb.edu",
             "professorEmail": "	richert@ucsb.edu",
             "explanation": "PhD CS Stanford",
@@ -19,7 +19,7 @@ const recommendationsFixtures = {
             "done": true
         },
         {
-            "id": 3,
+            "id": 2,
             "requesterEmail": "ldelplaya@ucsb.edu",
             "professorEmail": "phtcon@ucsb.edu",
             "explanation": "PhD CS Stanford",
@@ -28,7 +28,7 @@ const recommendationsFixtures = {
             "done": false
         },
         {
-            "id": 4,
+            "id": 3,
             "requesterEmail": "	alu@ucsb.edu",
             "professorEmail": "phtcon@ucsb.edu",
             "explanation": "PhD CE Cal Tech",
