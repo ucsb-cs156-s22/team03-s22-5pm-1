@@ -67,6 +67,6 @@ export default function MenuItemTable({ menuitem, currentUser }) {
     return <OurTable
         data={menuitem}
         columns={columnsToDisplay}
-        testid={MenuItemTable}
+        testid={testid}
     />;
 };
