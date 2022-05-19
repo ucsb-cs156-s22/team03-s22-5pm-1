@@ -19,6 +19,8 @@ import RecommendationsIndexPage from "main/pages/Recommendations/Recommendations
 import MenuItemIndexPage from "main/pages/MenuItem/MenuItemIndexPage";
 
 
+import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
@@ -100,6 +102,13 @@ function App() {
                     )
                 }
                 {
+                    hasRole(currentUser, "ROLE_USER") && (
+                        <>
+                            <Route exact path="/articles/list" element={<ArticlesIndexPage />} />
+                        </> 
+                    )
+                }
+                {
                     hasRole(currentUser, "ROLE_ADMIN") && (
                         <>
                             <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
@@ -111,6 +120,7 @@ function App() {
             </Routes>
         </BrowserRouter>
     );
+
 
 }
 
