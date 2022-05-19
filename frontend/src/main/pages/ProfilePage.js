@@ -29,9 +29,9 @@ const ProfilePage = () => {
                 <Col md>
                     <h2>{fullName}</h2>
                     <p className="lead text-muted">{email}</p>
-                    <RoleBadge role={"ROLE_USER"} currentUser={currentUser}/>
-                    <RoleBadge role={"ROLE_MEMBER"} currentUser={currentUser}/>
-                    <RoleBadge role={"ROLE_ADMIN"} currentUser={currentUser}/>
+                    <RoleBadge role={"ROLE_USER"} currentUser={currentUser} />
+                    <RoleBadge role={"ROLE_MEMBER"} currentUser={currentUser} />
+                    <RoleBadge role={"ROLE_ADMIN"} currentUser={currentUser} />
                 </Col>
             </Row>
             <Row className="text-left">
