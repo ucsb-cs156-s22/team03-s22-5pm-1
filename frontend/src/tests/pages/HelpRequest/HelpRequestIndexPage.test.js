@@ -139,7 +139,7 @@ describe("HelpRequestIndexPage tests", () => {
 
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/HelpRequest/all").reply(200, helpRequestFixtures.threeHelpRequest);
-        axiosMock.onDelete("/api/HelpRequest").reply(200, "HelpRequest with id 1 was deleted");
+        axiosMock.onDelete("/api/HelpRequest", {params: {id:1}}).reply(200, "HelpRequest with id 1 was deleted");
 
 
         const { getByTestId } = render(
