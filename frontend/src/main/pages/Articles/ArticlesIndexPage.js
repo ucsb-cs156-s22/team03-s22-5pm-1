@@ -21,7 +21,7 @@ export default function ArticlesIndexPage() {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>UCSB Dining Commons</h1>
+        <h1>Articles</h1>
         <ArticlesTable articles={articles} currentUser={currentUser} />
       </div>
     </BasicLayout>
