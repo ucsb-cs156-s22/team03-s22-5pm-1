@@ -65,7 +65,6 @@ describe("UCSBDatesTable tests", () => {
           <UCSBDatesTable dates={ucsbDatesFixtures.threeDates} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
-
     );
 
     const expectedHeaders = ["id", "QuarterYYYYQ", "Name", "Date"];

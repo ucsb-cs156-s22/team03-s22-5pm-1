@@ -1,17 +1,11 @@
 # STARTER-team03
 
-TODO: Add a codecov badge for the main branch here.  What's shown is an example, but you need to visit codecov to get the markdown for your repo; don't just try to edit the markdown in the example below.  The token value won't match your repo.  Be sure to adjust the default branch from `master` to `main`.
-
 [![codecov](https://codecov.io/gh/ucsb-cs156-s22/team03-s22-5pm-1/branch/main/graph/badge.svg?token=v1vtYBbOIr)](https://codecov.io/gh/ucsb-cs156-s22/team03-s22-5pm-1)
-
-TODO: Add a link to the deployed Heroku app for your team here, e.g.
 
 * <https://s22-7pm-3-team02.herokuapp.com>
 
 * Storybook (production): <https://ucsb-cs156-s22.github.io/team03-s22-5pm-1-docs/>
 * Storybook (development/qa): <https://ucsb-cs156-s22.github.io/team03-s22-5pm-1-docs-qa/>
-
-TODO: Leave the results of the TODOS, but remove all of the TODO instructions from the readme.
 
 # Setup before running application
 
