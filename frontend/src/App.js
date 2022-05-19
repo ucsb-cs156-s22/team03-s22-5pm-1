@@ -8,6 +8,7 @@ import TodosCreatePage from "main/pages/Todos/TodosCreatePage";
 import TodosEditPage from "main/pages/Todos/TodosEditPage";
 
 import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexPage";
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage"
 
 import ReviewsIndexPage from "main/pages/Reviews/ReviewsIndexPage";
 import OrganizationsIndexPage from "main/pages/Organizations/OrganizationsIndexPage";
@@ -92,6 +93,13 @@ function App() {
                     )
                 }
                 {
+                    hasRole(currentUser, "ROLE_USER") && (
+                        <>
+                            <Route exact path="/helpRequest/list" element={<HelpRequestIndexPage />} />
+                        </>
+                    )
+                }
+                {
                     hasRole(currentUser, "ROLE_ADMIN") && (
                         <>
                             <Route exact path="/ucsbdates/edit/:id" element={<UCSBDatesEditPage />} />
@@ -103,6 +111,7 @@ function App() {
             </Routes>
         </BrowserRouter>
     );
+
 }
 
 export default App;
