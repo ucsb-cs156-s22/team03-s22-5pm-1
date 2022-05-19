@@ -116,7 +116,7 @@ describe("ArticlesIndexPage tests", () => {
         setupUserOnly();
 
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/article/all").timeout();
+        axiosMock.onGet("/api/Article/all").timeout();
 
         const { queryByTestId, getByText } = render(
             <QueryClientProvider client={queryClient}>
@@ -128,14 +128,14 @@ describe("ArticlesIndexPage tests", () => {
 
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(3); });
 
-        const expectedHeaders = ['Title',  'Url', 'Explanation','Email','dateAdded?'];
+        const expectedHeaders = ['Id','Title',  'Url', 'Explanation','Email','Date Added?'];
     
         expectedHeaders.forEach((headerText) => {
           const header = getByText(headerText);
           expect(header).toBeInTheDocument();
         });
 
-        expect(queryByTestId(`${testId}-cell-row-0-col-title`)).not.toBeInTheDocument();
+        expect(queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
     });
 
     test("test what happens when you click delete, admin", async () => {
@@ -143,7 +143,7 @@ describe("ArticlesIndexPage tests", () => {
 
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/Article/all").reply(200, articlesFixtures.threeArticles);
-        axiosMock.onDelete("/api/Article", {params: {title: "Bayes network"}}).reply(200, "Article with id Tensor network was deleted");
+        axiosMock.onDelete("/api/Article", {params: {id: "1"}}).reply(200, "Article with id 1 was deleted");
 
 
         const { getByTestId } = render(
@@ -154,9 +154,9 @@ describe("ArticlesIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-title`)).toBeInTheDocument(); });
+        await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
-       expect(getByTestId(`${testId}-cell-row-0-col-title`)).toHaveTextContent("Bayes network"); 
+       expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1"); 
 
 
         const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
@@ -164,7 +164,7 @@ describe("ArticlesIndexPage tests", () => {
        
         fireEvent.click(deleteButton);
 
-        await waitFor(() => { expect(mockToast).toBeCalledWith("Article with id Bayes network was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("Article with id 1 was deleted") });
 
     });
 

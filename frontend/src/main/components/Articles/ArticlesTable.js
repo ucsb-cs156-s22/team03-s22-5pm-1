@@ -10,7 +10,7 @@ export function cellToAxiosParamsDelete(cell) {
         url: "/api/Article",
         method: "DELETE",
         params: {
-            code: cell.row.values.code
+            id: cell.row.values.id
         }
     }
 }
@@ -35,6 +35,10 @@ export default function ArticlesTable({ articles, currentUser }) {
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 
     const columns = [
+        {
+            Header: 'Id',
+            accessor: 'id',
+        },
         {
             Header: 'Title',
             accessor: 'title', 

@@ -22,6 +22,6 @@ Empty.args = {
 
 export const threeArticles = Template.bind({});
 
-threeArganizations.args = {
+threeArticles.args = {
     articles: articlesFixtures.threeArticles
 };
