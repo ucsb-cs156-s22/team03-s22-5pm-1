@@ -7,19 +7,19 @@ const menuitemFixtures = {
     },
     threemenuitem: [
         {
-            "id": 2,
-            "diningCommonsCode": "portola",
-            "name": "Strawberry Ice Cream",
-            "station": "Dessert"
-            },
+            "id": 4,
+            "diningCommonsCode": "carillo",
+            "name": "Tofu Banh Mi",
+            "station": "Entree"
+        },
         {
-            "id": 3,
+            "id": 2,
             "diningCommonsCode": "de la guerra",
             "name": "Chow Mein",
             "station": "Appetizer"
         },
         {
-            "id": 4,
+            "id": 3,
             "diningCommonsCode": "ortega",
             "name": "Chicken Tikka Masala",
             "station": "Special Entree"
